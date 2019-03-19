@@ -6,7 +6,7 @@ $app = new \Slim\App;
 
 // GET Todos los clientes 
 $app->get('/api/clientes', function(Request $request, Response $response){
-  $sql = "SELECT * FROM clientes";
+  $sql = "SELECT * FROM cliente";
   try{
     $db = new db();
     $db = $db->conectDB();
@@ -28,7 +28,7 @@ $app->get('/api/clientes', function(Request $request, Response $response){
 // GET Recueperar cliente por ID 
 $app->get('/api/clientes/{id}', function(Request $request, Response $response){
   $id_cliente = $request->getAttribute('id');
-  $sql = "SELECT * FROM clientes WHERE id = $id_cliente";
+  $sql = "SELECT * FROM cliente WHERE id = $id_cliente";
   try{
     $db = new db();
     $db = $db->conectDB();
@@ -57,7 +57,7 @@ $app->post('/api/clientes/nuevo', function(Request $request, Response $response)
    $direccion = $request->getParam('direccion');
    $ciudad = $request->getParam('ciudad'); 
   
-  $sql = "INSERT INTO clientes (nombre, apellidos, telefono, email, direccion, ciudad) VALUES 
+  $sql = "INSERT INTO cliente (nombre, apellidos, telefono, email, direccion, ciudad) VALUES 
           (:nombre, :apellidos, :telefono, :email, :direccion, :ciudad)";
   try{
     $db = new db();
@@ -93,7 +93,7 @@ $app->put('/api/clientes/modificar/{id}', function(Request $request, Response $r
    $direccion = $request->getParam('direccion');
    $ciudad = $request->getParam('ciudad'); 
   
-  $sql = "UPDATE clientes SET
+  $sql = "UPDATE cliente SET
           nombre = :nombre,
           apellidos = :apellidos,
           telefono = :telefono,
@@ -128,7 +128,7 @@ $app->put('/api/clientes/modificar/{id}', function(Request $request, Response $r
 // DELETE borar cliente 
 $app->delete('/api/clientes/delete/{id}', function(Request $request, Response $response){
    $id_cliente = $request->getAttribute('id');
-   $sql = "DELETE FROM clientes WHERE id = $id_cliente";
+   $sql = "DELETE FROM cliente WHERE id = $id_cliente";
      
   try{
     $db = new db();
